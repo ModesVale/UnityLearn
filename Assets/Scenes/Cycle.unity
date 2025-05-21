@@ -479,7 +479,6 @@ GameObject:
   - component: {fileID: 1177671145}
   - component: {fileID: 1177671144}
   - component: {fileID: 1177671143}
-  - component: {fileID: 1177671142}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -487,18 +486,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1177671142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177671141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!81 &1177671143
 AudioListener:
   m_ObjectHideFlags: 0
@@ -583,7 +570,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1341264375}
   - component: {fileID: 1341264374}
-  - component: {fileID: 1341264373}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -591,18 +577,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1341264373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341264372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &1341264374
 Light:
   m_ObjectHideFlags: 0
@@ -833,7 +807,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff11df832e3bf9d4c9fb9afc8b468a0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
+  _speed: -1
 --- !u!135 &2062606342
 SphereCollider:
   m_ObjectHideFlags: 0
