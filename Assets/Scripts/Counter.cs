@@ -1,35 +1,35 @@
 using System.Collections;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _counterText;
     [SerializeField] private float _delayValye = 0.5f;
     [SerializeField] private float _stepValye = 1f;
     [SerializeField] private float _startValye = 0.0f;
 
     private float _currentValye = 0.0f;
-    private bool _isCounterRunning = false;
     private Coroutine _countingCoroutine;
 
+    public event UnityAction<float> ValueChanged;
+
     private void Start()
-    {
-        DisplayCount(_currentValye); 
+    { 
         _currentValye = _startValye;
+        ValueChanged?.Invoke(_currentValye);
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (_isCounterRunning)
+            if (_countingCoroutine == null)
             {
-                StopCounting();
+                _countingCoroutine = StartCoroutine(Count(_delayValye, _stepValye));
             }
             else
             {
-                StartCounting();
+                StopCounting();
             }
         }
     }
@@ -41,21 +41,10 @@ public class Counter : MonoBehaviour
         while (true)
         {
             _currentValye += step;
-            DisplayCount(_currentValye);
+            ValueChanged?.Invoke(_currentValye);
             yield return wait;
         }
 
-    }
-
-    private void DisplayCount(float count)
-    {
-        _counterText.text = count.ToString("");
-    }
-
-    private void StartCounting()
-    {
-        _countingCoroutine = StartCoroutine(Count(_delayValye, _stepValye));
-        _isCounterRunning = true;
     }
 
     private void StopCounting()
@@ -65,7 +54,5 @@ public class Counter : MonoBehaviour
             StopCoroutine( _countingCoroutine);
             _countingCoroutine = null;
         }
-
-        _isCounterRunning = false;
     }
 }
