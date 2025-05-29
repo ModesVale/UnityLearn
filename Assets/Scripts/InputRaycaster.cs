@@ -6,7 +6,7 @@ public class InputRaycaster : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown((int)MouseButton.LeftMouse))
         {
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
