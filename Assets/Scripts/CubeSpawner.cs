@@ -3,41 +3,37 @@ using UnityEngine;
 
 public class CubeSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _cubePrefab;
+    [SerializeField] private SplittableCube _cubePrefab;
 
-    [SerializeField, Range(0f, 1f)] private float _scaleFactor = 0.5f;
+    [SerializeField] private int _minChildren = 2;
 
-    public List<GameObject> SpawnChildren(SplittableCube parent)
+    [SerializeField] private int _maxChildren = 6;
+
+    [SerializeField] private float _childScaleFactor = 0.5f;
+
+    public float ChildScaleFactor => _childScaleFactor;
+
+    public List<SplittableCube> SpawnChildren(SplittableCube parent)
     {
-        var spawned = new List<GameObject>();
-
-        if (Random.value > parent.SplitChance)
-        {
-            return spawned;
-        }
-
-        int count = Random.Range(parent.MinChildren, parent.MaxChildren + 1);
+        int count = Random.Range(_minChildren, _maxChildren + 1);
+        var list = new List<SplittableCube>(count);
 
         for (int i = 0; i < count; i++)
         {
-            GameObject child = Instantiate(_cubePrefab, parent.Position, Quaternion.identity);
-            child.transform.localScale = parent.Scale * _scaleFactor;
+            SplittableCube child = Instantiate(_cubePrefab, parent.transform.position, Quaternion.identity);
 
-            if (child.TryGetComponent<Renderer>(out Renderer childRenderer))
+            child.transform.localScale = parent.transform.localScale * _childScaleFactor;
+
+            if (child.TryGetComponent<Renderer>(out var renderer))
             {
-                Material material = new Material(childRenderer.sharedMaterial);
+                Material material = new Material(renderer.sharedMaterial);
                 material.color = Random.ColorHSV();
-                childRenderer.material = material;
+                renderer.material = material;
             }
 
-            spawned.Add(child);
-
-            if(child.TryGetComponent<SplittableCube>(out SplittableCube childCube))
-            {
-                childCube.TrySetSplitChance(parent.SplitChance * _scaleFactor);
-            }
+            list.Add(child);
         }
 
-        return spawned;
-    }
+        return list;
+    }  
 }

@@ -5,15 +5,15 @@ public class ExplosionService : MonoBehaviour
 {
     [SerializeField] private float _explosionForce = 5f;
     [SerializeField] private float _explosionRadius = 1f;
-    [SerializeField] private float _upwardModifier = 0.5f;
+    [SerializeField] private float _explosionUpwardModifier = 0.5f;
 
-    public void ApplyExplosion(List<GameObject> cubesToAffect, Vector3 explosionCenter)
+    public void ExplodeCubes(List<SplittableCube> cubesToAffect, Vector3 explosionCenter)
     {
-        foreach (GameObject cube in cubesToAffect)
+        foreach (SplittableCube cube in cubesToAffect)
         {
             if (cube.TryGetComponent<Rigidbody>(out Rigidbody cubeRigidBody))
             {
-                cubeRigidBody.AddExplosionForce(_explosionForce, explosionCenter, _explosionRadius, _upwardModifier);
+                cubeRigidBody.AddExplosionForce(_explosionForce, explosionCenter, _explosionRadius, _explosionUpwardModifier);
             }
         }
     }

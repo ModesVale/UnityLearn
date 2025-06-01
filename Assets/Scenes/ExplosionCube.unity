@@ -1084,8 +1084,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c53127bcf8ad34db9a8ab39096d3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubePrefab: {fileID: 1555784054477181411, guid: 745929d99f0f9a24c8820bccdee2abf3, type: 3}
-  _scaleFactor: 0.5
+  _cubePrefab: {fileID: 2066945517403723262, guid: 745929d99f0f9a24c8820bccdee2abf3, type: 3}
+  _minChildren: 2
+  _maxChildren: 6
+  _childScaleFactor: 0.5
 --- !u!4 &1815096027
 Transform:
   m_ObjectHideFlags: 0
@@ -1132,7 +1134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _explosionForce: 5
   _explosionRadius: 1
-  _upwardModifier: 0.5
+  _explosionUpwardModifier: 0.5
 --- !u!4 &2011025287
 Transform:
   m_ObjectHideFlags: 0
