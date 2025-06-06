@@ -17,12 +17,9 @@ public class InputRaycaster : MonoBehaviour
         {
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider.TryGetComponent<SplittableCube>(out SplittableCube clickedCube))
             {
-                if (hit.collider.TryGetComponent<SplittableCube>(out SplittableCube cube))
-                {
-                    SplittableCube.RaiseCubeCliked(cube);
-                }
+                clickedCube.HandleClick();
             }
         }
     }
